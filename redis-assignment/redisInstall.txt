@@ -1,0 +1,48 @@
+cd redis-6.2.6
+> ls
+00-RELEASENOTES		Makefile		runtest-moduleapi
+BUGS			README.md		runtest-sentinel
+CONDUCT			TLS.md			sentinel.conf
+CONTRIBUTING		deps			src
+COPYING			redis.conf		tests
+INSTALL			runtest			utils
+MANIFESTO		runtest-cluster
+> src/redis-server
+11261:C 13 Oct 2021 13:38:01.828 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+11261:C 13 Oct 2021 13:38:01.830 # Redis version=6.2.6, bits=64, commit=9a650043, modified=1, pid=11261, just started
+11261:C 13 Oct 2021 13:38:01.830 # Warning: no config file specified, using the default config. In order to specify a config file use src/redis-server /path/to/redis.conf
+11261:M 13 Oct 2021 13:38:01.831 * Increased maximum number of open files to 10032 (it was originally set to 256).
+11261:M 13 Oct 2021 13:38:01.831 * monotonic clock: POSIX clock_gettime
+                _._
+           _.-``__ ''-._
+      _.-``    `.  `_.  ''-._           Redis 6.2.6 (9a650043/1) 64 bit
+  .-`` .-```.  ```\/    _.,_ ''-._
+ (    '      ,       .-`  | `,    )     Running in standalone mode
+ |`-._`-...-` __...-.``-._|'` _.-'|     Port: 6379
+ |    `-._   `._    /     _.-'    |     PID: 11261
+  `-._    `-._  `-./  _.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |           https://redis.io
+  `-._    `-._`-.__.-'_.-'    _.-'
+ |`-._`-._    `-.__.-'    _.-'_.-'|
+ |    `-._`-._        _.-'_.-'    |
+  `-._    `-._`-.__.-'_.-'    _.-'
+      `-._    `-.__.-'    _.-'
+          `-._        _.-'
+              `-.__.-'
+
+11261:M 13 Oct 2021 13:38:01.838 # Server initialized
+11261:M 13 Oct 2021 13:38:01.840 * Ready to accept connections
+
+
+
+
+New terminal
+
+ls
+redis-6.2.6		redis-6.2.6.tar.gz
+> cd redis-6.2.6
+> src/redis-cli
+127.0.0.1:6379>
+KEYS *
+(empty array)

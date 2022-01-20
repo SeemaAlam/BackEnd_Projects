@@ -1,0 +1,32 @@
+~ mongoimport --drop --collection movies --file /Users/sachinalam/Downloads/Movie_database.json --jsonArray
+
+
+> mongo
+
+> use test
+
+ 1)db.movies.find({movie_name: {$eq: "Planet of the Apes"}}).pretty()
+
+ 2)db.movies.find({movie_name: {$ne: "Planet of the Apes"}}).pretty()
+ 
+ 3)db.movies.find({$and:[{"budget":{$gt:120000}},{"budget":{$gte:100000}}]}).pretty();
+
+4)db.movies.find({$and:[{"budget":{$lt:120000}},{"budget":{$lte:100000}}]}).pretty();
+
+5) db.movies.find({$and:[{"production_year":{$gt:2000}},{"budget":{$gt:100000}}]}).pretty()
+
+6)db.movies.find({$and:[{"production_year":{$gt:2000}},{"budget":{$gt:100000}}]})
+
+7)db.movies.find({$nor:[{"production_year":{$eq:2000}},{"budget":{$eq:100000}}]}).pretty()
+
+8)db.movies.find({$or:[{"production_year":{$ne:2000}},{"budget":{$ne:100000}}]}).pretty()
+
+9)db.movies.find({"production_year":{$in:[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010]}}).pretty();
+
+10)db.movies.find().sort({"production_year":-1,"movie_name":1}).pretty();
+
+11)db.movies.find().sort({"production_year":-1,"movie_name":1}).skip(10).limit(5).pretty();
+
+12)const rd=db.movies.find().sort({"production_year":-1,"movie_name":1}).toArray().map(ele=>ele._id);
+
+ db.movies.remove({_id:{$in:rd}})

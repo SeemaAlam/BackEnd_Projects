@@ -1,0 +1,16 @@
+{
+  "name": "redis-assign",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mongoose": "^6.0.10",
+    "redis": "^3.1.2"
+  }
+}

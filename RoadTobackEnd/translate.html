@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translate</title>
+  </head>
+  <style>
+    .cont {
+      width: 350px;
+      height: 270px;
+      border: 1px solid black;
+      overflow: hidden;
+    }
+    #main_div {
+      display: flex;
+      margin-left: 21%;
+    }
+    .input {
+      width: 97%;
+      height: 4em;
+      font-size: larger;
+      margin-top: 8%;
+      text-align: center;
+      border: none;
+      outline: none;
+    }
+    #btn {
+      margin-left: 42%;
+      width: 13%;
+      height: 44px;
+      margin-top: 8px;
+      border-radius: 8px;
+      background: black;
+      color: whitesmoke;
+      font-size: x-large;
+      cursor: pointer;
+    }
+    #first {
+      display: flex;
+      margin-left: 32%;
+      margin-top: 38px;
+      margin-bottom: 0px;
+    }
+    .lang {
+      height: 19px;
+      margin-top: 21px;
+      margin-left: 5px;
+    }
+    .div {
+      margin-top: 55px;
+      margin-left: 32px;
+      font-size: larger;
+    }
+    #line {
+      font-size: larger;
+      margin-left: 6%;
+    }
+  </style>
+  <body>
+    <div id="first">
+      <p id="line">Please Choose the language</p>
+      <select id="lang" class="lang" onChange="update()">
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+        <option value="zh">Chinese</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="hi">Hindi</option>
+        <option value="id">Indonesian</option>
+        <option value="ga">Irish</option>
+        <option value="it">Italian</option>
+        <option value="ja">Japanese</option>
+        <option value="ko">Korean</option>
+        <option value="pl">Polish</option>
+        <option value="pt">Portuguese</option>
+        <option value="ru">Russian</option>
+        <option value="es">Spanish</option>
+        <option value="tr">Turkish</option>
+        <option value="vi">Vietnamese</option>
+      </select>
+    </div>
+    <div id="main_div">
+      <div class="cont">
+        <input type="text" id="inp_left" class="input" />
+      </div>
+      <div class="cont">
+        <div id="right" class="input"></div>
+      </div>
+    </div>
+    <button onclick="submit()" id="btn">Translate</button>
+  </body>
+</html>
+<script>
+  function appendword(w) {
+    var div_main = document.getElementById("right");
+    var val;
+    div_main.innerHTML=null;
+    let div = document.createElement("div");
+    div.setAttribute("class", "div");
+    div.innerText = w;
+    div_main.append(div);
+  }
+
+  async function submit() {
+    let input = document.getElementById("inp_left").value;
+    let word = await getWord(input);
+
+    if (word.length < 1) {
+      return false;
+    }
+    appendword(word);
+  }
+
+  function update() {
+    let select = document.getElementById("lang");
+    val = select.options[select.selectedIndex].value;
+  }
+
+  async function getWord(input) {
+    let res = await fetch("https://libretranslate.de/translate", {
+      method: "POST",
+      body: JSON.stringify({
+        q: `${input}`,
+        source: `en`,
+        target: `${val}`,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    let data = await res.json();
+
+    return data.translatedText;
+  }
+</script>
